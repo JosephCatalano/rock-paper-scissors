@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
   compChoice = Math.random();
   if (compChoice > 0.66) {
@@ -10,49 +13,68 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-  humanChoice = prompt("Enter A number");
+  humanChoice = prompt("Rock, Paper, or Scissors?");
   return humanChoice;
 }
 
-let humanScore,
-  computerScore = 0;
-s;
-
-function playRound(humanChoice, computerChoice) {
+function playRound() {
+  let computerChoice = getComputerChoice();
+  let humanChoice = getHumanChoice();
+  console.log("The computer chose " + computerChoice);
   switch (humanChoice) {
     case "rock":
       switch (computerChoice) {
         case "rock":
-          console.log("YOU TIED");
+          return 2;
         case "paper":
-          console.log("YOU LOST");
+          return 0;
         case "scissors":
-          console.log("YOU WIN");
+          return 1;
       }
+      break;
 
     case "paper":
       switch (computerChoice) {
         case "rock":
-          console.log("YOU WIN");
+          return 1;
         case "paper":
-          console.log("YOU TIED");
+          return 2;
         case "scissors":
-          console.log("YOU LOST");
+          return 0;
       }
+      break;
 
     case "scissors":
       switch (computerChoice) {
         case "rock":
-          console.log("YOU LOST");
+          return 0;
         case "paper":
-          console.log("YOU WIN");
+          return 1;
         case "scissors":
-          console.log("YOU TIED");
+          return 2;
       }
+      break;
   }
 }
 
-const humanSelection = getHumanChoice().toLowerCase();
-const computerSelection = getComputerChoice().toLowerCase();
+function playGame() {
+  let playerScore = 0;
+  let computerScore = 0;
+  for (i = 0; i < 5; i++) {
+    winner = playRound();
+    if (winner == 1) {
+      playerScore++;
+    } else if (winner == 0) {
+      computerScore++;
+    }
+  }
+  if (playerScore > computerScore) {
+    console.log("YOU WON THE GAME!!!!!");
+  } else if (computerScore > playerScore) {
+    console.log("YOU LOST THE GAME...");
+  } else {
+    console.log("THE GAME WAS A TIE.");
+  }
+}
 
-playRound(humanSelection, computerSelection);
+playGame();
