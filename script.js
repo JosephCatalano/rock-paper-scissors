@@ -2,7 +2,7 @@ let humanScore = 0;
 let computerScore = 0;
 
 function getComputerChoice() {
-  compChoice = Math.random();
+  let compChoice = Math.random();
   if (compChoice > 0.66) {
     return "rock";
   } else if (compChoice < 0.33) {
@@ -13,7 +13,7 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-  humanChoice = prompt("Rock, Paper, or Scissors?");
+  let humanChoice = prompt("Rock, Paper, or Scissors?");
   return humanChoice;
 }
 
@@ -60,14 +60,6 @@ function playRound() {
 function playGame() {
   let playerScore = 0;
   let computerScore = 0;
-  for (i = 0; i < 5; i++) {
-    winner = playRound();
-    if (winner == 1) {
-      playerScore++;
-    } else if (winner == 0) {
-      computerScore++;
-    }
-  }
   if (playerScore > computerScore) {
     console.log("YOU WON THE GAME!!!!!");
   } else if (computerScore > playerScore) {
@@ -77,4 +69,8 @@ function playGame() {
   }
 }
 
-playGame();
+const root = document.querySelector("#root");
+const btn1 = document.createElement("button");
+btn1.textContent = "HELLO";
+btn1.addEventListener("click", playRound);
+root.appendChild(btn1);
