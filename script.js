@@ -18,6 +18,9 @@ root.appendChild(btn3);
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
   button.addEventListener("click", () => playRound(button.textContent));
+  button.style.color = "blue";
+  button.style.backgroundColor = "lightgrey";
+  button.style.borderRadius = "25px";
 });
 
 const resultsDiv = document.createElement("div");
@@ -93,11 +96,13 @@ function playRound(humanChoice) {
           roundResultText = "You tied this round.";
           break;
       }
-      break;
   }
 
-  // append result + scores into the div
-  resultsDiv.textContent += ` ${roundResultText} Score — You: ${humanScore} | Computer: ${computerScore}`;
+  if (humanScore >= 5 || computerScore >= 5) {
+    resultsDiv.textContent = `Game Over!! Your Score: ${humanScore} | Computer Score: ${computerScore}`;
+  } else {
+    resultsDiv.textContent += ` ${roundResultText} Score — You: ${humanScore} | Computer: ${computerScore}`;
+  }
 }
 
 function playGame() {
